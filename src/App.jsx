@@ -1,4 +1,6 @@
 import Card from "./components/Card";
+import TextExpander from "./components/TextExpander";
+
 import "./index.css";
 
 const appStyle = {
@@ -7,13 +9,15 @@ const appStyle = {
     justifyContent: "center",
     flexDirection: "column",
     gap: "4rem",
-    height: "100vh",
+
+    padding: "4rem 0",
 };
 
 function App() {
     return (
         <div style={appStyle}>
             <Card />
+            <TextExpander />
         </div>
     );
 }

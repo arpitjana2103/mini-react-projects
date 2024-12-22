@@ -5,7 +5,8 @@ const appStyle = {
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
-
+    flexDirection: "column",
+    gap: "4rem",
     height: "100vh",
 };
 

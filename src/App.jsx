@@ -1,5 +1,6 @@
 import Card from "./components/Card";
 import DateCounter from "./components/DateCounter";
+import StarRating from "./components/StarRating";
 import TextExpander from "./components/TextExpander";
 
 import "./index.css";
@@ -20,6 +21,7 @@ function App() {
             <Card />
             <TextExpander />
             <DateCounter />
+            <StarRating />
         </div>
     );
 }

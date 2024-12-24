@@ -26,6 +26,14 @@ function DateCounter() {
     const [step, setStep] = useState(1);
     const [dayCount, setDayCount] = useState("0");
 
+    // Derived State
+    const currentDate = addDays(today, Number(dayCount === "-" ? 0 : dayCount));
+
+    let prefix = "";
+    if (dayCount === "0" || dayCount === "-") prefix = "Today is ";
+    else if (+dayCount > 0) prefix = `${+dayCount} days after `;
+    else if (+dayCount < 0) prefix = `${+dayCount * -1} days before `;
+
     function handleReset() {
         setStep(1);
         setDayCount("0");
@@ -79,9 +87,7 @@ function DateCounter() {
             </div>
 
             <p className={styles.txt}>
-                {formateDate(
-                    addDays(today, Number(dayCount === "-" ? 0 : dayCount))
-                )}
+                {prefix} : {formateDate(currentDate)}
             </p>
             <button className={styles.btn} onClick={handleReset}>
                 Reset

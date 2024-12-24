@@ -7,6 +7,14 @@ function isNumber(str) {
     return !isNaN(Number(str));
 }
 
+function getPrefix(dayCount) {
+    let prefix = "";
+    if (dayCount === "0" || dayCount === "-") prefix = "Today is ";
+    else if (+dayCount > 0) prefix = `${+dayCount} days after `;
+    else if (+dayCount < 0) prefix = `${+dayCount * -1} days before `;
+    return prefix;
+}
+
 function formateDate(date) {
     return date.toLocaleDateString("en-IN", {
         weekday: "long",
@@ -28,11 +36,7 @@ function DateCounter() {
 
     // Derived State
     const currentDate = addDays(today, Number(dayCount === "-" ? 0 : dayCount));
-
-    let prefix = "";
-    if (dayCount === "0" || dayCount === "-") prefix = "Today is ";
-    else if (+dayCount > 0) prefix = `${+dayCount} days after `;
-    else if (+dayCount < 0) prefix = `${+dayCount * -1} days before `;
+    const prefix = getPrefix(dayCount);
 
     function handleReset() {
         setStep(1);

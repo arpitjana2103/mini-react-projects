@@ -4,11 +4,9 @@ import styles from "../style/StarRating.module.css";
 // Hover : (tempRating) (temprating !== 0) // tempRating
 // Not-Hovering : (tempRating === 0)  // Rating
 
-const totalRating = 10;
-const color = "#e03131";
-
-function StarRating() {
-    const [rating, setRating] = useState(0);
+function StarRating(props) {
+    const { color, defaultRating, size: totalRating } = props;
+    const [rating, setRating] = useState(defaultRating);
     const [tempRating, setTempRating] = useState(0);
     const hovering = tempRating !== 0;
 

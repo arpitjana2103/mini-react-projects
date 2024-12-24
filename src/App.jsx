@@ -21,7 +21,12 @@ function App() {
             <Card />
             <TextExpander />
             <DateCounter />
-            <StarRating />
+
+            <div>
+                <StarRating color="#be4bdb" defaultRating={3} size={5} />
+                <StarRating color="#fab005" defaultRating={5} size={10} />
+                <StarRating color="#74b816" defaultRating={4} size={15} />
+            </div>
         </div>
     );
 }

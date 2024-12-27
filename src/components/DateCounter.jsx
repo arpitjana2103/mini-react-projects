@@ -39,8 +39,8 @@ function DateCounter() {
     const prefix = getPrefix(dayCount);
 
     function handleReset() {
-        setStep(1);
-        setDayCount("0");
+        setStep(() => 1);
+        setDayCount(() => "0");
     }
 
     function handleStepChange(e) {

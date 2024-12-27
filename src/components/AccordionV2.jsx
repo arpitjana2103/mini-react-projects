@@ -2,9 +2,9 @@ import { useState } from "react";
 import styles from "../style/Accordion.module.css";
 import { HiMiniMinus, HiMiniPlus } from "react-icons/hi2";
 
-function Accordion(props) {
+function AccordionV2(props) {
     const { contents } = props;
-    const [open, setOpen] = useState(null);
+    const [open, setOpen] = useState(new Array(contents.length).fill(false));
 
     // open == null > all closed
     // open == 1 > 1sth row is opend
@@ -16,7 +16,10 @@ function Accordion(props) {
     //   1     2      =>  2
 
     function handleClick(index) {
-        setOpen((currState) => (currState === index ? null : index));
+        setOpen(function (currState) {
+            currState[index] = !currState[index];
+            return [...currState];
+        });
     }
 
     return (
@@ -28,7 +31,7 @@ function Accordion(props) {
                         details={content.details}
                         handleClick={handleClick}
                         index={index}
-                        isOpen={open === index}
+                        isOpen={open[index]}
                         key={index}
                     />
                 );
@@ -53,4 +56,4 @@ function Row(props) {
     );
 }
 
-export default Accordion;
+export default AccordionV2;

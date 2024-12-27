@@ -2,9 +2,13 @@ import { useState } from "react";
 import styles from "../style/Accordion.module.css";
 import { HiMiniMinus, HiMiniPlus } from "react-icons/hi2";
 
-function Accordion(props) {
+// 1. Create an accordion
+// 2. Create an accordion, where multiple row can be opened
+// 3. Optimize space complexity or optimze performance
+
+function AccordionV3(props) {
     const { contents } = props;
-    const [open, setOpen] = useState(null);
+    const [open, setOpen] = useState([]);
 
     // open == null > all closed
     // open == 1 > 1sth row is opend
@@ -15,8 +19,17 @@ function Accordion(props) {
     //   1     1      =>  null
     //   1     2      =>  2
 
-    function handleClick(index) {
-        setOpen((currState) => (currState === index ? null : index));
+    function handleClick(rowIndex) {
+        setOpen(function (currState) {
+            if (currState.includes(rowIndex)) {
+                // Remove that index
+                currState.splice(currState.indexOf(rowIndex), 1);
+            } else {
+                // Add that index
+                currState.push(rowIndex);
+            }
+            return [...currState];
+        });
     }
 
     return (
@@ -28,7 +41,7 @@ function Accordion(props) {
                         details={content.details}
                         handleClick={handleClick}
                         index={index}
-                        isOpen={open === index}
+                        isOpen={open.includes(index)}
                         key={index}
                     />
                 );
@@ -53,4 +66,4 @@ function Row(props) {
     );
 }
 
-export default Accordion;
+export default AccordionV3;
